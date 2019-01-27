@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--Kelly Turner-->
+<html>
+	<head>
+		<title>Candies</title>
+		<script>
+			function Initialize()
+			{
+				candies = [];/*empty array*/
+				candyAddition = document.getElementById("candy");/*refers to input tag*/
+				candyOutput = document.getElementById("candyoutput");/*refers to div tag*/
+				
+				errorMsg = document.getElementById("errormessage");
+				
+				display();
+			}
+			function display()
+			{
+				var i = 0;
+				var output = ""; /*will be empty string when i is less than 0???*/
+				
+				while (i < candies.length) /*index is less than candy array*/
+				{
+					output += "candy[" + i + "]:  " + candies[i] + "<br />";/*builds output string by cancatonating output with i as candy at that position in array*/
+					/*cancatonate break tag onto above line to have candies on diff lines*/
+					i++;/*makes sure isn't endless loop*/
+				}/*first time thru above function: reports i at position 0 in array; then cont to report i and check if it's < length of array*/
+				candyOutput.innerHTML = output;
+				candyAddition.value = "";/*if anything typed in, input box will be cleared*/
+				
+				
+			}
+			function addCandy()
+			{
+				var theCandy = candyAddition.value;/*property of input tag; what user types in*/
+				/*to check is item is already in list:*/
+				if(candies.indexOf(theCandy) == -1)/*search for candies got back -1; didn't find item*/
+				{
+					candies.push(theCandy);/*places var in array*/
+				}
+				else
+				{
+					errorMsg.innerHTML = theCandy + " is already on the list.";
+				}
+				display();
+			}
+		</script>
+		<style>
+		</style>
+	</head>
+	<body onload = "Initialize();">
+		<div id = "candyoutput"></div>
+		<button onclick = "addCandy();">Add a new candy</button>
+		<input id = "candy" type = "text" />
+		<br />
+		<div id = "errormessage"></div>
+		
+	</body>
+	
+
+</html>
